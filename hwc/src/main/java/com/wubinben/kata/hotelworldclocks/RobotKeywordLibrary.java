@@ -21,6 +21,7 @@ public class RobotKeywordLibrary {
     private int correctTimeOfCity;
     private String cityName;
     private TimeSubject timeSubject;
+    private HotelWorldClocksFacade hotelWorldClocksFacade;
 
     public RobotKeywordLibrary() {
         this.dstCities = new ArrayList<City>();
@@ -29,9 +30,7 @@ public class RobotKeywordLibrary {
     }
 
     public void setCityDstActive(String cityName) {
-        this.cityBuffer = City.newInstance(cityName);
-        this.cityBuffer.setDstActive();
-        this.dstCities.add(this.cityBuffer);
+        this.hotelWorldClocksFacade.addACityWithDstStatus(cityName, DaylightSavingTime.ACTIVE);
     }
 
     public void addToCityList(String cityName) {
