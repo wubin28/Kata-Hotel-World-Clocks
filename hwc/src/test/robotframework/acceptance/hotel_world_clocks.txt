@@ -40,11 +40,12 @@ The daylight saving period of London ends
 
 *** Keywords ***
 ${city} is in the DST period
-    Put In DST Group    ${city}
-    Set DST active    ${city}
+    Set City DST active    ${city}
+    Add to City List    ${city}
 
 ${city} does not use the DST
-    Put In NODST Group    ${city}
+    Set City DST inactive    ${city}
+    Add to City List    ${city}
 
 I adjust the incorrect time of the clock of ${city} to be ${hour of time}
     Adjust Incorrect Time of City    ${hour of time}    ${city}
@@ -54,12 +55,12 @@ the time of the clock of ${city} should be ${expected hour of time}
     Should Be Equal    ${expected hour of time}    ${result hour of time}
 
 the DST period of ${city} ends
-    Put In DST Group    ${city}
-    Set DST inactive    ${city}
+    Set City DST inactive    ${city}
+    Add to City List    ${city}
 
 the DST period of ${city} does not end
-    Put In DST Group    ${city}
-    Set DST active    ${city}
+    Set City DST active    ${city}
+    Add to City List    ${city}
 
 I adjust the time of the clock of ${city} to be ${hour of time} due to the end of DST
     Adjust Time of City When DST Ends    ${hour of time}    ${city}

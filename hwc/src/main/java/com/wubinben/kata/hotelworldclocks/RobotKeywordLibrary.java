@@ -28,13 +28,13 @@ public class RobotKeywordLibrary {
         this.timeSubject = TimeSubject.newInstance();
     }
 
-    public void putInDSTGroup(String cityName) {
+    public void setCityDstActive(String cityName) {
         this.cityBuffer = City.newInstance(cityName);
-    }
-
-    public void setDstActive(String cityName) {
         this.cityBuffer.setDstActive();
         this.dstCities.add(this.cityBuffer);
+    }
+
+    public void addToCityList(String cityName) {
     }
 
     public void putInNoDstGroup(String cityName) {
@@ -86,7 +86,8 @@ public class RobotKeywordLibrary {
         return Integer.toString(2);
     }
 
-    public void setDstInactive(String cityName) {
+    public void setCityDstInactive(String cityName) {
+        this.cityBuffer = City.newInstance(cityName);
         this.cityBuffer.setDstInactive();
         this.dstCities.add(this.cityBuffer);
     }
