@@ -9,12 +9,15 @@ package com.wubinben.kata.hotelworldclocks;
  */
 public class Beijing extends CityObserver {
     private final int utcOffset;
+    private DaylightSavingTime dstStatus;
 
-    public Beijing(int utcOffset) {
+    public Beijing(int utcOffset, DaylightSavingTime dstStatus) {
         this.utcOffset = utcOffset;
+        this.dstStatus = dstStatus;
     }
 
-    public static Beijing newInstance(int utcOffset) {
-        return new Beijing(utcOffset);
+    public static Beijing newInstance(int utcOffset, DaylightSavingTime dstStatus) {
+        return new Beijing(utcOffset, dstStatus);
     }
+
 }

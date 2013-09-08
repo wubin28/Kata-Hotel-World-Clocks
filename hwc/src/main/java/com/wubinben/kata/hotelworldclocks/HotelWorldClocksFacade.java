@@ -15,23 +15,31 @@ public class HotelWorldClocksFacade {
     private ArrayList<City> dstCities;
     private TimeSubject timeSubject;
     private HashMap<String, CityObserver> allCityMap;
+    private ArrayList<CityObserver> cityList;
 
     public HotelWorldClocksFacade() {
         this.dstCities = new ArrayList<City>();
         this.timeSubject = TimeSubject.newInstance();
         this.allCityMap = new HashMap<String, CityObserver>();
-        configureAllCitiesInAMap();
-    }
-
-    private void configureAllCitiesInAMap() {
-        this.allCityMap.put("Beijing", Beijing.newInstance(8));
-        this.allCityMap.put("London", London.newInstance(0));
-        this.allCityMap.put("Moscow", Moscow.newInstance(4));
-        this.allCityMap.put("Sydney", Sydney.newInstance(10));
-        this.allCityMap.put("New York", NewYork.newInstance(-5));
+        this.cityList = new ArrayList<CityObserver>();
     }
 
     public void addACityWithDstStatus(String cityName, DaylightSavingTime dstStatus) {
+        if (cityName.equals("Beijing")) {
+            this.cityList.add(Beijing.newInstance(8, dstStatus));
+        }
+        if (cityName.equals("London")) {
+            this.cityList.add(London.newInstance(0, dstStatus));
+        }
+        if (cityName.equals("Moscow")) {
+            this.cityList.add(Moscow.newInstance(4, dstStatus));
+        }
+        if (cityName.equals("Sydney")) {
+            this.cityList.add(Sydney.newInstance(10, dstStatus));
+        }
+        if (cityName.equals("New York")) {
+            this.cityList.add(NewYork.newInstance(-5, dstStatus));
+        }
         this.cityBuffer = City.newInstance(cityName);
         this.cityBuffer.setDstActive();
         this.dstCities.add(this.cityBuffer);

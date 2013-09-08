@@ -9,12 +9,15 @@ package com.wubinben.kata.hotelworldclocks;
  */
 public class NewYork extends CityObserver {
     private final int utcOffset;
+    private DaylightSavingTime dstStatus;
 
-    public NewYork(int utcOffset) {
+    public NewYork(int utcOffset, DaylightSavingTime dstStatus) {
         this.utcOffset = utcOffset;
+        this.dstStatus = dstStatus;
     }
 
-    public static NewYork newInstance(int utcOffset) {
-        return new NewYork(utcOffset);
+    public static NewYork newInstance(int utcOffset, DaylightSavingTime dstStatus) {
+        return new NewYork(utcOffset, dstStatus);
     }
+
 }

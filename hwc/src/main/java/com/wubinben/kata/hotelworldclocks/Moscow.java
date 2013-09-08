@@ -9,12 +9,15 @@ package com.wubinben.kata.hotelworldclocks;
  */
 public class Moscow extends CityObserver {
     private final int utcOffset;
+    private DaylightSavingTime dstStatus;
 
-    public Moscow(int utcOffset) {
+    public Moscow(int utcOffset, DaylightSavingTime dstStatus) {
         this.utcOffset = utcOffset;
+        this.dstStatus = dstStatus;
     }
 
-    public static Moscow newInstance(int utcOffset) {
-        return new Moscow(utcOffset);
+    public static Moscow newInstance(int utcOffset, DaylightSavingTime dstStatus) {
+        return new Moscow(utcOffset, dstStatus);
     }
+
 }
