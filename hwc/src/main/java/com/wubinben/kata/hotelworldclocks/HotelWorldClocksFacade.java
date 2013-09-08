@@ -21,24 +21,23 @@ public class HotelWorldClocksFacade {
         this.dstCities = new ArrayList<City>();
         this.timeSubject = TimeSubject.newInstance();
         this.allCityMap = new HashMap<String, CityObserver>();
-        this.cityList = new ArrayList<CityObserver>();
     }
 
     public void addACityWithDstStatus(String cityName, DaylightSavingTime dstStatus) {
         if (cityName.equals("Beijing")) {
-            this.cityList.add(Beijing.newInstance(8, dstStatus));
+            this.timeSubject.attach(Beijing.newInstance(8, dstStatus));
         }
         if (cityName.equals("London")) {
-            this.cityList.add(London.newInstance(0, dstStatus));
+            this.timeSubject.attach(London.newInstance(0, dstStatus));
         }
         if (cityName.equals("Moscow")) {
-            this.cityList.add(Moscow.newInstance(4, dstStatus));
+            this.timeSubject.attach(Moscow.newInstance(4, dstStatus));
         }
         if (cityName.equals("Sydney")) {
-            this.cityList.add(Sydney.newInstance(10, dstStatus));
+            this.timeSubject.attach(Sydney.newInstance(10, dstStatus));
         }
         if (cityName.equals("New York")) {
-            this.cityList.add(NewYork.newInstance(-5, dstStatus));
+            this.timeSubject.attach(NewYork.newInstance(-5, dstStatus));
         }
         this.cityBuffer = City.newInstance(cityName);
         this.cityBuffer.setDstActive();
