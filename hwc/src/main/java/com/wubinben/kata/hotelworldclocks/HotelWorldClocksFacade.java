@@ -1,6 +1,7 @@
 package com.wubinben.kata.hotelworldclocks;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,10 +14,21 @@ public class HotelWorldClocksFacade {
     private City cityBuffer;
     private ArrayList<City> dstCities;
     private TimeSubject timeSubject;
+    private HashMap<String, CityObserver> allCityMap;
 
     public HotelWorldClocksFacade() {
         this.dstCities = new ArrayList<City>();
         this.timeSubject = TimeSubject.newInstance();
+        this.allCityMap = new HashMap<String, CityObserver>();
+        configureAllCitiesInAMap();
+    }
+
+    private void configureAllCitiesInAMap() {
+        this.allCityMap.put("Beijing", Beijing.newInstance(8));
+        this.allCityMap.put("London", London.newInstance(0));
+        this.allCityMap.put("Moscow", Moscow.newInstance(4));
+        this.allCityMap.put("Sydney", Sydney.newInstance(10));
+        this.allCityMap.put("New York", NewYork.newInstance(-5));
     }
 
     public void addACityWithDstStatus(String cityName, DaylightSavingTime dstStatus) {
