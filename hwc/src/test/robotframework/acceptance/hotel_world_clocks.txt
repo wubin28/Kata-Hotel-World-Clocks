@@ -1,0 +1,66 @@
+*** Settings ***
+Documentation   Use Robot Framework Maven Plugin and Java to implement the
+...             Hotel World Clocks kata and refactor it to Observer design
+...             pattern. In this kata, a hotel has 5 clocks showing the time
+...             of Beijing (UTC+8), London (UTC+0), Moscow (UTC+4), Sydney
+...             (UTC+10), and New York (UTC-5). You have to consider daylight
+...             saving time (DST) for cities like London and New York in this kata.
+...             When the time of each one of these clocks is set due to
+...             incorrect time or start/end of daylight saving period, the time
+...             of all other clocks will be set automatically. The hotel would
+...             add more clocks for different cities in the future.
+Library     com.wubinben.kata.hotelworldclocks.RobotKeywordLibrary
+
+*** Test Cases ***
+Adjust the incorrect time of Beijing
+    Given London is in the DST period
+    And New York is in the DST period
+    And Beijing does not use the DST
+    And Moscow does not use the DST
+    And Sydney does not use the DST
+    When I adjust the incorrect time of the clock of Beijing to be 9
+    Then the time of the clock of Beijing should be 9
+    And the time of the clock of London should be 2
+    And the time of the clock of Moscow should be 5
+    And the time of the clock of Sydney should be 11
+    And the time of the clock of New York should be 21
+
+The daylight saving period of London ends
+    Given the DST period of London ends
+    And the DST period of New York does not end
+    And Beijing does not use the DST
+    And Moscow does not use the DST
+    And Sydney does not use the DST
+    When I adjust the time of the clock of London to be 0 due to the end of DST
+    Then the time of the clock of Beijing should be 8
+    And the time of the clock of London should be 0
+    And the time of the clock of Moscow should be 4
+    And the time of the clock of Sydney should be 10
+    And the time of the clock of New York should be 20
+
+*** Keywords ***
+${city} is in the DST period
+    Put In DST Group    ${city}
+    Set DST active    ${city}
+
+${city} does not use the DST
+    Put In NODST Group    ${city}
+
+I adjust the incorrect time of the clock of ${city} to be ${hour of time}
+    Adjust Incorrect Time of City    ${hour of time}    ${city}
+
+the time of the clock of ${city} should be ${expected hour of time}
+    ${result hour of time}=    Get Result Hour Of Time    ${city}
+    Should Be Equal    ${expected hour of time}    ${result hour of time}
+
+the DST period of ${city} ends
+    Put In DST Group    ${city}
+    Set DST inactive    ${city}
+
+the DST period of ${city} does not end
+    Put In DST Group    ${city}
+    Set DST active    ${city}
+
+I adjust the time of the clock of ${city} to be ${hour of time} due to the end of DST
+    Adjust Time of City When DST Ends    ${hour of time}    ${city}
+
