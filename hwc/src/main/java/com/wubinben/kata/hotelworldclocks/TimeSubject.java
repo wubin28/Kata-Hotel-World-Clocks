@@ -1,6 +1,7 @@
 package com.wubinben.kata.hotelworldclocks;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,10 +12,11 @@ import java.util.ArrayList;
  */
 public class TimeSubject {
     private boolean isDstChanged;
-    private ArrayList<CityObserver> cityList;
+    private HashMap<String, CityObserver> cityMap;
+    private int utcZeroHourOfTime;
 
     public TimeSubject() {
-        this.cityList = new ArrayList<CityObserver>();
+        this.cityMap = new HashMap<String, CityObserver>();
     }
 
     public void adjustIncorrectTimeOfCity(int hourOfTime, String cityName) {
@@ -33,7 +35,26 @@ public class TimeSubject {
         return this.isDstChanged;
     }
 
-    public void attach(CityObserver cityObserver) {
-        this.cityList.add(cityObserver);
+    public void attach(String cityName, CityObserver cityObserver) {
+        this.cityMap.put(cityName, cityObserver);
     }
+
+    public CityObserver getCity(String cityName) {
+        return this.cityMap.get(cityName);
+    }
+
+    private void notifyAllCities() {
+        Iterator<CityObserver> iterator = this.cityMap.values().iterator();
+        while (iterator.hasNext()) {
+            CityObserver cityObserver = iterator.next();
+            cityObserver.updateCityWithUtcZeroHourOfTime(this.utcZeroHourOfTime);
+        }
+    }
+
+
+    public void setUtcZeroHourOfTime(int utcZeroHourOfTime) {
+        this.utcZeroHourOfTime = utcZeroHourOfTime;
+        notifyAllCities();
+    }
+
 }

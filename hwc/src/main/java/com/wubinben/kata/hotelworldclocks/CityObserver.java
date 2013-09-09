@@ -8,4 +8,10 @@ package com.wubinben.kata.hotelworldclocks;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class CityObserver {
+    public static final int INVALID_HOUR_OF_TIME = 100;
+    public TimeSubject timeSubject;
+
+    public abstract void setStateOfTimeSubjectWithUtcZeroHourOfTime(int hourOfTime);
+
+    public abstract void updateCityWithUtcZeroHourOfTime(int utcZeroHourOfTime);
 }

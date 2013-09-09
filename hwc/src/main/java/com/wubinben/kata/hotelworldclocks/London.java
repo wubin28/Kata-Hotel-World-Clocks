@@ -20,4 +20,13 @@ public class London extends CityObserver {
         return new London(utcOffset, dstStatus);
     }
 
+    @Override
+    public void setStateOfTimeSubjectWithUtcZeroHourOfTime(int hourOfTime) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void updateCityWithUtcZeroHourOfTime(int utcZeroHourOfTime) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 }
