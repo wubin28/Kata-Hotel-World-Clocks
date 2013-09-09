@@ -9,7 +9,6 @@ package com.wubinben.kata.hotelworldclocks;
  */
 public abstract class CityObserver {
     public static final int INVALID_HOUR_OF_TIME = 100;
-    public TimeSubject timeSubject;
 
     public abstract void setStateOfTimeSubjectWithUtcZeroHourOfTime(int hourOfTime);
 
@@ -34,4 +33,6 @@ public abstract class CityObserver {
         }
         return CityObserver.INVALID_HOUR_OF_TIME;
     }
+
+    public abstract String printCityName();
 }

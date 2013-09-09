@@ -9,12 +9,14 @@ package com.wubinben.kata.hotelworldclocks;
  */
 public class Beijing extends CityObserver {
     private final int utcOffset;
+    private TimeSubject timeSubject;
     private DaylightSavingTime dstStatus;
     private int localHourOfTime;
 
     public Beijing(int utcOffset, DaylightSavingTime dstStatus) {
         this.utcOffset = utcOffset;
         this.dstStatus = dstStatus;
+        this.timeSubject = TimeSubject.newInstance();
     }
 
     public static Beijing newInstance(int utcOffset, DaylightSavingTime dstStatus) {
@@ -31,6 +33,11 @@ public class Beijing extends CityObserver {
     @Override
     public void updateCityWithUtcZeroHourOfTime(int utcZeroHourOfTime) {
         this.localHourOfTime = convertUtcZeroTimeToLocalTime(utcZeroHourOfTime, utcOffset, dstStatus);
+    }
+
+    @Override
+    public String printCityName() {
+        return "Beijing";
     }
 
 }

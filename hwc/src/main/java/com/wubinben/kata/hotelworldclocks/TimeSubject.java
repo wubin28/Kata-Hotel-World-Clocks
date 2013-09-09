@@ -40,7 +40,10 @@ public class TimeSubject {
     }
 
     public CityObserver getCity(String cityName) {
-        return this.cityMap.get(cityName);
+        if (this.cityMap.keySet().contains(cityName)) {
+            return this.cityMap.get(cityName);
+        }
+        throw new IllegalStateException("---No city name in the city map.");
     }
 
     private void notifyAllCities() {

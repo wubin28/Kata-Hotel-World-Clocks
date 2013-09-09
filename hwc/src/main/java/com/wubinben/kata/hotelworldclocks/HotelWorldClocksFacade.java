@@ -2,6 +2,8 @@ package com.wubinben.kata.hotelworldclocks;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created with IntelliJ IDEA.
@@ -47,6 +49,27 @@ public class HotelWorldClocksFacade {
 
     public void adjustIncorrectTimeOfCity(int hourOfTime, String cityName) {
         this.timeSubject.getCity(cityName).setStateOfTimeSubjectWithUtcZeroHourOfTime(hourOfTime);
+//        CityObserver cityObserver = this.timeSubject.getCity(cityName);
+//        if (cityName.equals("Beijing")) {
+//            Beijing beijing = (Beijing)cityObserver;
+//            beijing.setStateOfTimeSubjectWithUtcZeroHourOfTime(hourOfTime);
+//        }
+//        if (cityName.equals("London")) {
+//            London london = (London)cityObserver;
+//            london.setStateOfTimeSubjectWithUtcZeroHourOfTime(hourOfTime);
+//        }
+//        if (cityName.equals("Moscow")) {
+//            Moscow moscow = (Moscow)cityObserver;
+//            moscow.setStateOfTimeSubjectWithUtcZeroHourOfTime(hourOfTime);
+//        }
+//        if (cityName.equals("Sydney")) {
+//            Sydney sydney = (Sydney)cityObserver;
+//            sydney.setStateOfTimeSubjectWithUtcZeroHourOfTime(hourOfTime);
+//        }
+//        if (cityName.equals("New York")) {
+//            NewYork newYork = (NewYork)cityObserver;
+//            newYork.setStateOfTimeSubjectWithUtcZeroHourOfTime(hourOfTime);
+//        }
 
         this.timeSubject.setDstChanged(false);
         this.timeSubject.adjustIncorrectTimeOfCity(hourOfTime, cityName);
