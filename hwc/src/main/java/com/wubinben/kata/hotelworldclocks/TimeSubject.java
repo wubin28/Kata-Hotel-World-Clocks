@@ -51,7 +51,6 @@ public class TimeSubject {
         }
     }
 
-
     public void setUtcZeroHourOfTime(int utcZeroHourOfTime) {
         this.utcZeroHourOfTime = utcZeroHourOfTime;
         notifyAllCities();

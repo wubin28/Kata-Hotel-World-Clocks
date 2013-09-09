@@ -14,4 +14,24 @@ public abstract class CityObserver {
     public abstract void setStateOfTimeSubjectWithUtcZeroHourOfTime(int hourOfTime);
 
     public abstract void updateCityWithUtcZeroHourOfTime(int utcZeroHourOfTime);
+
+    protected int convertLocalTimeToUtcZeroTime(int hourOfTime, int utcOffset, DaylightSavingTime dstStatus) {
+        switch (dstStatus) {
+            case INACTIVE:
+                return hourOfTime - utcOffset;
+            case ACTIVE:
+                return hourOfTime - utcOffset - 1;
+        }
+        return CityObserver.INVALID_HOUR_OF_TIME;
+    }
+
+    protected int convertUtcZeroTimeToLocalTime(int utcZeroHourOfTime, int utcOffset, DaylightSavingTime dstStatus) {
+        switch (dstStatus) {
+            case INACTIVE:
+                return utcZeroHourOfTime + utcOffset;
+            case ACTIVE:
+                return utcZeroHourOfTime + utcOffset + 1;
+        }
+        return CityObserver.INVALID_HOUR_OF_TIME;
+    }
 }

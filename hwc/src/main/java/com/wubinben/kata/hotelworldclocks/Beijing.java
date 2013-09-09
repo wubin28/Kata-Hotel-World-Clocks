@@ -30,28 +30,7 @@ public class Beijing extends CityObserver {
 
     @Override
     public void updateCityWithUtcZeroHourOfTime(int utcZeroHourOfTime) {
-        convertUtcZeroTimeToLocalTime(utcZeroHourOfTime);
-    }
-
-    private void convertUtcZeroTimeToLocalTime(int utcZeroHourOfTime) {
-        switch (dstStatus) {
-            case INACTIVE:
-                this.localHourOfTime = utcZeroHourOfTime + utcOffset;
-                break;
-            case ACTIVE:
-                this.localHourOfTime = utcZeroHourOfTime + utcOffset + 1;
-                break;
-        }
-    }
-
-    private int convertLocalTimeToUtcZeroTime(int hourOfTime, int utcOffset, DaylightSavingTime dstStatus) {
-        switch (dstStatus) {
-            case INACTIVE:
-                return hourOfTime - utcOffset;
-            case ACTIVE:
-                return hourOfTime - utcOffset - 1;
-        }
-        return CityObserver.INVALID_HOUR_OF_TIME;
+        this.localHourOfTime = convertUtcZeroTimeToLocalTime(utcZeroHourOfTime, utcOffset, dstStatus);
     }
 
 }
