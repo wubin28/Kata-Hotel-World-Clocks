@@ -59,8 +59,4 @@ public class HotelWorldClocksFacade {
         return new HotelWorldClocksFacade();
     }
 
-    public void adjustTimeOfCityWhenDstChanged(int hourOfTime, String cityName) {
-        this.timeSubject.getCity(cityName).setStateOfTimeSubjectWithUtcZeroHourOfTime(hourOfTime);
-    }
-
 }

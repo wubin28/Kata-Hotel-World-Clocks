@@ -46,6 +46,6 @@ public class RobotKeywordLibrary {
     }
 
     public void adjustTimeOfCityWhenDstEnds(int hourOfTime, String cityName) {
-        this.hotelWorldClocksFacade.adjustTimeOfCityWhenDstChanged(hourOfTime, cityName);
+        this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hourOfTime, cityName);
     }
 }
