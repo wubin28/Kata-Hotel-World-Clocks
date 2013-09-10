@@ -1,15 +1,15 @@
 package com.wubinben.kata.hotelworldclocks;
 
-import java.util.ArrayList;
 
 /**
- * Created with IntelliJ IDEA.
+ * The fixture code.
  * User: Ben
  * Date: 13-9-7
  * Time: 下午11:09
  * To change this template use File | Settings | File Templates.
  */
 public class RobotKeywordLibrary {
+    private static final BenLogger LOGGER = BenLogger.getLogger(BenLogger.LEVEL_OFF);
     /**
      *  Means that that this instance of the class well be used
      *  for whole lifecycle of test execution.
@@ -34,18 +34,18 @@ public class RobotKeywordLibrary {
     }
 
     public void adjustIncorrectTimeOfCity(int hourOfTime, String cityName) {
-        System.out.println("---in RobotKeywordLibrary.adjustIncorrectTimeOfCity().");
-        System.out.println("---hourOfTime: " + hourOfTime);
-        System.out.println("---cityName: " + cityName);
+        LOGGER.info("in RobotKeywordLibrary.adjustIncorrectTimeOfCity().");
+        LOGGER.info("hourOfTime: " + hourOfTime);
+        LOGGER.info("cityName: " + cityName);
         this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hourOfTime, cityName);
     }
 
     public String getResultHourOfTime(String cityName) {
-        System.out.println("---in RobotKeywordLibrary.getResultHourOfTime().");
+        LOGGER.info("in RobotKeywordLibrary.getResultHourOfTime().");
         return this.hotelWorldClocksFacade.getResultHourOfTime(cityName);
     }
 
     public void adjustTimeOfCityWhenDstEnds(int hourOfTime, String cityName) {
-        this.hotelWorldClocksFacade.adjustTimeOfCityWhenDstChanged(hourOfTime, cityName, DaylightSavingTime.INACTIVE);
+        this.hotelWorldClocksFacade.adjustTimeOfCityWhenDstChanged(hourOfTime, cityName);
     }
 }

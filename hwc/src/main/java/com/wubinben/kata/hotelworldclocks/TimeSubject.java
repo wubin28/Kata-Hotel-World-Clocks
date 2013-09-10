@@ -4,13 +4,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /**
- * Created with IntelliJ IDEA.
+ * The subject participant in Observer design pattern.
  * User: Ben
  * Date: 13-9-8
  * Time: 下午4:12
  * To change this template use File | Settings | File Templates.
  */
 public class TimeSubject {
+    private static final BenLogger LOGGER = BenLogger.getLogger(BenLogger.LEVEL_OFF);
     private HashMap<String, CityObserver> cityMap;
     private int utcZeroHourOfTime;
 
@@ -27,31 +28,31 @@ public class TimeSubject {
     }
 
     public CityObserver getCity(String cityName) {
-        System.out.println("---in TimeSubject.getCity().");
+        LOGGER.info("in TimeSubject.getCity().");
         if (this.cityMap.keySet().contains(cityName)) {
-            System.out.println("---contains: " + cityName);
+            LOGGER.info("contains: " + cityName);
             return this.cityMap.get(cityName);
         }
-        throw new IllegalStateException("---No city name in the city map.");
+        throw new IllegalStateException("No city name in the city map.");
     }
 
     private void notifyAllCities() {
-        System.out.println("---in TimeSubject.notifyAllCities().");
-        System.out.println("---size of cityMap: " + this.cityMap.size());
+        LOGGER.info("in TimeSubject.notifyAllCities().");
+        LOGGER.info("size of cityMap: " + this.cityMap.size());
         Iterator<String> cityNames = this.cityMap.keySet().iterator();
-        System.out.println("---cityNames.hasNext(): " + cityNames.hasNext());
+        LOGGER.info("cityNames.hasNext(): " + cityNames.hasNext());
         Iterator<CityObserver> cityObservers = this.cityMap.values().iterator();
-        System.out.println("---cityObservers.hasNext(): " + cityObservers.hasNext());
+        LOGGER.info("cityObservers.hasNext(): " + cityObservers.hasNext());
         while (cityObservers.hasNext()) {
-            System.out.println("---in loop");
+            LOGGER.info("in loop");
             CityObserver cityObserver = cityObservers.next();
             cityObserver.updateCityWithUtcZeroHourOfTime(this.utcZeroHourOfTime);
         }
     }
 
     public void setUtcZeroHourOfTime(int utcZeroHourOfTime) {
-        System.out.println("---in TimeSubject.setUtcZeroHourOfTime().");
-        System.out.println("---utcZeroHourOfTime: " + utcZeroHourOfTime);
+        LOGGER.info("in TimeSubject.setUtcZeroHourOfTime().");
+        LOGGER.info("utcZeroHourOfTime: " + utcZeroHourOfTime);
         this.utcZeroHourOfTime = utcZeroHourOfTime;
         notifyAllCities();
     }

@@ -2,14 +2,14 @@ package com.wubinben.kata.hotelworldclocks;
 
 
 /**
- * Created with IntelliJ IDEA.
+ * A concrete observer.
  * User: Ben
  * Date: 13-9-8
  * Time: 下午10:56
  * To change this template use File | Settings | File Templates.
  */
 public class Beijing extends CityObserver {
-    private static final BenLogger LOGGER = BenLogger.getLogger();
+    private static final BenLogger LOGGER = BenLogger.getLogger(BenLogger.LEVEL_OFF);
     private final int utcOffset;
     private final TimeSubject timeSubject;
     private DaylightSavingTime dstStatus;
@@ -27,8 +27,8 @@ public class Beijing extends CityObserver {
 
     @Override
     public void setStateOfTimeSubjectWithUtcZeroHourOfTime(int localHourOfTime) {
-        System.out.println("---in Beijing.setStateOfTimeSubjectWithUtcZeroHourOfTime().");
-        System.out.println("---localHourOfTime: " + localHourOfTime);
+        LOGGER.info("in Beijing.setStateOfTimeSubjectWithUtcZeroHourOfTime().");
+        LOGGER.info("localHourOfTime: " + localHourOfTime);
         this.localHourOfTime = localHourOfTime;
         this.timeSubject.setUtcZeroHourOfTime(convertLocalTimeToUtcZeroTime(this.localHourOfTime,
                 this.utcOffset, this.dstStatus));
@@ -36,8 +36,8 @@ public class Beijing extends CityObserver {
 
     @Override
     public void updateCityWithUtcZeroHourOfTime(int utcZeroHourOfTime) {
-        System.out.println("---in Beijing.updateCityWithUtcZeroHourOfTime()");
-        System.out.println("---utcZeroHourOfTime: " + utcZeroHourOfTime);
+        LOGGER.info("in Beijing.updateCityWithUtcZeroHourOfTime()");
+        LOGGER.info("utcZeroHourOfTime: " + utcZeroHourOfTime);
         this.localHourOfTime = convertUtcZeroTimeToLocalTime(utcZeroHourOfTime, utcOffset, dstStatus);
     }
 
@@ -49,7 +49,7 @@ public class Beijing extends CityObserver {
     @Override
     public String getLocalHourOfTime() {
         LOGGER.info("in Beijing.getLocalHourOfTime().");
-        System.out.println("---this.localHourOfTime: " + this.localHourOfTime);
+        LOGGER.info("this.localHourOfTime: " + this.localHourOfTime);
         return Integer.toString(this.localHourOfTime);
     }
 

@@ -1,7 +1,7 @@
 package com.wubinben.kata.hotelworldclocks;
 
 /**
- * Created with IntelliJ IDEA.
+ * A concrete observer.
  * User: Ben
  * Date: 13-9-8
  * Time: 下午11:15
