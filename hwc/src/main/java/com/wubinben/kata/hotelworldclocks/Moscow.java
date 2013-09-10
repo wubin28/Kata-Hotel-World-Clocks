@@ -13,14 +13,14 @@ public class Moscow extends CityObserver {
     private DaylightSavingTime dstStatus;
     private int localHourOfTime;
 
-    public Moscow(int utcOffset, DaylightSavingTime dstStatus) {
+    private Moscow(int utcOffset, DaylightSavingTime dstStatus, TimeSubject timeSubject) {
         this.utcOffset = utcOffset;
         this.dstStatus = dstStatus;
-        this.timeSubject = TimeSubject.newInstance();
+        this.timeSubject = timeSubject;
     }
 
-    public static Moscow newInstance(int utcOffset, DaylightSavingTime dstStatus) {
-        return new Moscow(utcOffset, dstStatus);
+    public static Moscow newInstance(int utcOffset, DaylightSavingTime dstStatus, TimeSubject timeSubject) {
+        return new Moscow(utcOffset, dstStatus, timeSubject);
     }
 
     @Override
@@ -38,5 +38,9 @@ public class Moscow extends CityObserver {
     @Override
     public String printCityName() {
         return "Moscow";
+    }
+    @Override
+    public String getLocalHourOfTime() {
+        return Integer.toString(this.localHourOfTime);
     }
 }

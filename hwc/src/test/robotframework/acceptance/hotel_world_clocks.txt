@@ -13,7 +13,8 @@ Library     com.wubinben.kata.hotelworldclocks.RobotKeywordLibrary
 
 *** Test Cases ***
 Adjust the incorrect time of Beijing
-    Given "London" is in the DST period
+    Given a hotel lobby has five clocks
+    And "London" is in the DST period
     And "New York" is in the DST period
     And "Beijing" does not use the DST
     And "Moscow" does not use the DST
@@ -26,7 +27,8 @@ Adjust the incorrect time of Beijing
     And the time of the clock of "New York" should be 21
 
 The daylight saving period of London ends
-    Given the DST period of "London" ends
+    Given a hotel lobby has five clocks
+    And the DST period of "London" ends
     And the DST period of "New York" does not end
     And "Beijing" does not use the DST
     And "Moscow" does not use the DST
@@ -39,13 +41,14 @@ The daylight saving period of London ends
     And the time of the clock of "New York" should be 20
 
 *** Keywords ***
+a hotel lobby has five clocks
+    Test Initialization
+
 "${city}" is in the DST period
-    Set City DST active    ${city}
-    Add to City List    ${city}
+    Set City DST active and Add to City List    ${city}
 
 "${city}" does not use the DST
-    Set City DST inactive    ${city}
-    Add to City List    ${city}
+    Set City DST inactive and Add to City List    ${city}
 
 I adjust the incorrect time of the clock of "${city}" to be ${hour of time}
     Adjust Incorrect Time of City    ${hour of time}    ${city}
@@ -55,12 +58,10 @@ the time of the clock of "${city}" should be ${expected hour of time}
     Should Be Equal    ${expected hour of time}    ${result hour of time}
 
 the DST period of "${city}" ends
-    Set City DST inactive    ${city}
-    Add to City List    ${city}
+    Set City DST inactive and Add to City List    ${city}
 
 the DST period of "${city}" does not end
-    Set City DST active    ${city}
-    Add to City List    ${city}
+    Set City DST active and Add to City List    ${city}
 
 I adjust the time of the clock of "${city}" to be ${hour of time} due to the end of DST
     Adjust Time of City When DST Ends    ${hour of time}    ${city}

@@ -21,23 +21,28 @@ public class RobotKeywordLibrary {
         this.hotelWorldClocksFacade = HotelWorldClocksFacade.newInstance();
     }
 
-    public void setCityDstActive(String cityName) {
+    public void testInitialization() {
+        this.hotelWorldClocksFacade.testInitialization();
+    }
+
+    public void setCityDstActiveAndAddToCityList(String cityName) {
         this.hotelWorldClocksFacade.addACityWithDstStatus(cityName, DaylightSavingTime.ACTIVE);
     }
 
-    public void addToCityList(String cityName) {
+    public void setCityDstInactiveAndAddToCityList(String cityName) {
+        this.hotelWorldClocksFacade.addACityWithDstStatus(cityName, DaylightSavingTime.INACTIVE);
     }
 
     public void adjustIncorrectTimeOfCity(int hourOfTime, String cityName) {
+        System.out.println("---in RobotKeywordLibrary.adjustIncorrectTimeOfCity().");
+        System.out.println("---hourOfTime: " + hourOfTime);
+        System.out.println("---cityName: " + cityName);
         this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hourOfTime, cityName);
     }
 
     public String getResultHourOfTime(String cityName) {
+        System.out.println("---in RobotKeywordLibrary.getResultHourOfTime().");
         return this.hotelWorldClocksFacade.getResultHourOfTime(cityName);
-    }
-
-    public void setCityDstInactive(String cityName) {
-        this.hotelWorldClocksFacade.addACityWithDstStatus(cityName, DaylightSavingTime.INACTIVE);
     }
 
     public void adjustTimeOfCityWhenDstEnds(int hourOfTime, String cityName) {

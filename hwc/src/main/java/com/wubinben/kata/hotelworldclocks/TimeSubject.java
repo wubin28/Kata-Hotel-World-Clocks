@@ -11,7 +11,6 @@ import java.util.Iterator;
  * To change this template use File | Settings | File Templates.
  */
 public class TimeSubject {
-    private boolean isDstChanged;
     private HashMap<String, CityObserver> cityMap;
     private int utcZeroHourOfTime;
 
@@ -19,20 +18,8 @@ public class TimeSubject {
         this.cityMap = new HashMap<String, CityObserver>();
     }
 
-    public void adjustIncorrectTimeOfCity(int hourOfTime, String cityName) {
-        //To change body of created methods use File | Settings | File Templates.
-    }
-
     public static TimeSubject newInstance() {
         return new TimeSubject();
-    }
-
-    public void setDstChanged(boolean isDstChanged) {
-        this.isDstChanged = isDstChanged;
-    }
-
-    public boolean isDstChanged() {
-        return this.isDstChanged;
     }
 
     public void attach(String cityName, CityObserver cityObserver) {
@@ -40,21 +27,31 @@ public class TimeSubject {
     }
 
     public CityObserver getCity(String cityName) {
+        System.out.println("---in TimeSubject.getCity().");
         if (this.cityMap.keySet().contains(cityName)) {
+            System.out.println("---contains: " + cityName);
             return this.cityMap.get(cityName);
         }
         throw new IllegalStateException("---No city name in the city map.");
     }
 
     private void notifyAllCities() {
-        Iterator<CityObserver> iterator = this.cityMap.values().iterator();
-        while (iterator.hasNext()) {
-            CityObserver cityObserver = iterator.next();
+        System.out.println("---in TimeSubject.notifyAllCities().");
+        System.out.println("---size of cityMap: " + this.cityMap.size());
+        Iterator<String> cityNames = this.cityMap.keySet().iterator();
+        System.out.println("---cityNames.hasNext(): " + cityNames.hasNext());
+        Iterator<CityObserver> cityObservers = this.cityMap.values().iterator();
+        System.out.println("---cityObservers.hasNext(): " + cityObservers.hasNext());
+        while (cityObservers.hasNext()) {
+            System.out.println("---in loop");
+            CityObserver cityObserver = cityObservers.next();
             cityObserver.updateCityWithUtcZeroHourOfTime(this.utcZeroHourOfTime);
         }
     }
 
     public void setUtcZeroHourOfTime(int utcZeroHourOfTime) {
+        System.out.println("---in TimeSubject.setUtcZeroHourOfTime().");
+        System.out.println("---utcZeroHourOfTime: " + utcZeroHourOfTime);
         this.utcZeroHourOfTime = utcZeroHourOfTime;
         notifyAllCities();
     }

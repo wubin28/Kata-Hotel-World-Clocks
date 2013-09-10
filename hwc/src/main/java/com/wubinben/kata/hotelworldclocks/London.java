@@ -13,18 +13,20 @@ public class London extends CityObserver {
     private DaylightSavingTime dstStatus;
     private int localHourOfTime;
 
-    public London(int utcOffset, DaylightSavingTime dstStatus) {
+    private London(int utcOffset, DaylightSavingTime dstStatus, TimeSubject timeSubject) {
         this.utcOffset = utcOffset;
         this.dstStatus = dstStatus;
-        this.timeSubject = TimeSubject.newInstance();
+        this.timeSubject = timeSubject;
     }
 
-    public static London newInstance(int utcOffset, DaylightSavingTime dstStatus) {
-        return new London(utcOffset, dstStatus);
+    public static London newInstance(int utcOffset, DaylightSavingTime dstStatus, TimeSubject timeSubject) {
+        return new London(utcOffset, dstStatus, timeSubject);
     }
 
     @Override
     public void setStateOfTimeSubjectWithUtcZeroHourOfTime(int localHourOfTime) {
+        System.out.println("---in London.setStateOfTimeSubjectWithUtcZeroHourOfTime().");
+        System.out.println("---localHourOfTime: " + localHourOfTime);
         this.localHourOfTime = localHourOfTime;
         this.timeSubject.setUtcZeroHourOfTime(convertLocalTimeToUtcZeroTime(this.localHourOfTime,
                 this.utcOffset, this.dstStatus));
@@ -32,11 +34,20 @@ public class London extends CityObserver {
 
     @Override
     public void updateCityWithUtcZeroHourOfTime(int utcZeroHourOfTime) {
+        System.out.println("---in London.updateCityWithUtcZeroHourOfTime().");
+        System.out.println("---utcZeroHourOfTime: " + utcZeroHourOfTime);
         this.localHourOfTime = convertUtcZeroTimeToLocalTime(utcZeroHourOfTime, utcOffset, dstStatus);
+        System.out.println("---localHourOfTime: " + localHourOfTime);
     }
 
     @Override
     public String printCityName() {
         return "London";
+    }
+    @Override
+    public String getLocalHourOfTime() {
+        System.out.println("---in London.getLocalHourOfTime().");
+        System.out.println("---this.localHourOfTime: " + this.localHourOfTime);
+        return Integer.toString(this.localHourOfTime);
     }
 }

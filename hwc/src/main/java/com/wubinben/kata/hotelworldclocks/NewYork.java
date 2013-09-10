@@ -13,13 +13,14 @@ public class NewYork extends CityObserver {
     private DaylightSavingTime dstStatus;
     private int localHourOfTime;
 
-    public NewYork(int utcOffset, DaylightSavingTime dstStatus) {
+    private NewYork(int utcOffset, DaylightSavingTime dstStatus, TimeSubject timeSubject) {
         this.utcOffset = utcOffset;
         this.dstStatus = dstStatus;
+        this.timeSubject = timeSubject;
     }
 
-    public static NewYork newInstance(int utcOffset, DaylightSavingTime dstStatus) {
-        return new NewYork(utcOffset, dstStatus);
+    public static NewYork newInstance(int utcOffset, DaylightSavingTime dstStatus, TimeSubject timeSubject) {
+        return new NewYork(utcOffset, dstStatus, timeSubject);
     }
 
     @Override
@@ -37,5 +38,9 @@ public class NewYork extends CityObserver {
     @Override
     public String printCityName() {
         return "New York";
+    }
+    @Override
+    public String getLocalHourOfTime() {
+        return Integer.toString(this.localHourOfTime);
     }
 }
