@@ -19,6 +19,19 @@ public class HotelWorldClocksFacade {
     public void testInitialization() {
         this.timeSubject = TimeSubject.newInstance();
     }
+
+    /**
+     * Todo: 在工厂类里用反射来创建实例，这样能消除重复代码。
+     *  public CityFactory {
+     public static CitiObserver create(String name) {
+     Class clazz = class.forName(name);  //package info needed.
+     CityObserver  city = clazz.newInstance();  //if so, remove newInstance() from every city.
+     return city;
+     }
+     }
+     * @param cityName
+     * @param dstStatus
+     */
     public void addACityWithDstStatus(String cityName, DaylightSavingTime dstStatus) {
         LOGGER.info("in HotelWorldClocksFacade.addACityWithDstStatus()");
         if (cityName.equals("Beijing")) {
@@ -43,17 +56,22 @@ public class HotelWorldClocksFacade {
         }
     }
 
-    public void adjustIncorrectTimeOfCity(int hourOfTime, String cityName) {
+    /**
+     * Todo: 通过名称来处理会导致因为名称错误而引起不必要的Exception，可以通过Flyweight，Enum等来处理此事。新书7.5节对此有论述。
+     * @param hour
+     * @param cityName
+     */
+    public void adjustIncorrectTimeOfCity(int hour, String cityName) {
         LOGGER.info("in HotelWorldClocksFacade.adjustIncorrectTimeOfCity().");
-        LOGGER.info("hourOfTime: " + hourOfTime);
+        LOGGER.info("hour: " + hour);
         LOGGER.info("cityName: " + cityName);
-        this.timeSubject.getCity(cityName).setStateOfTimeSubjectWithUtcZeroHourOfTime(hourOfTime);
+        this.timeSubject.getCity(cityName).setTimeToTimeSubject(hour);
     }
 
-    public String getResultHourOfTime(String cityName) {
-        LOGGER.info("in HotelWorldClocksFacade.getResultHourOfTime().");
+    public String getResultHour(String cityName) {
+        LOGGER.info("in HotelWorldClocksFacade.getResultHour().");
         LOGGER.info("201309111003 cityName: " + cityName + "this.timeSubject: " + this.timeSubject.toString());
-        return this.timeSubject.getCity(cityName).getLocalHourOfTime();
+        return this.timeSubject.getCity(cityName).getLocalHour();
     }
 
     public static HotelWorldClocksFacade newInstance() {

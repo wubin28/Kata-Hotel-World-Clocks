@@ -13,7 +13,7 @@ import java.util.Iterator;
 public class TimeSubject {
     private static final BenLogger LOGGER = BenLogger.getLogger(BenLogger.LEVEL_OFF);
     private HashMap<String, CityObserver> cityMap;
-    private int utcZeroHourOfTime;
+    private int hourUtcZero;
 
     public TimeSubject() {
         this.cityMap = new HashMap<String, CityObserver>();
@@ -46,14 +46,14 @@ public class TimeSubject {
         while (cityObservers.hasNext()) {
             LOGGER.info("in loop");
             CityObserver cityObserver = cityObservers.next();
-            cityObserver.updateCityWithUtcZeroHourOfTime(this.utcZeroHourOfTime);
+            cityObserver.updateTimeOfCity(this.hourUtcZero);
         }
     }
 
-    public void setUtcZeroHourOfTime(int utcZeroHourOfTime) {
-        LOGGER.info("in TimeSubject.setUtcZeroHourOfTime().");
-        LOGGER.info("utcZeroHourOfTime: " + utcZeroHourOfTime);
-        this.utcZeroHourOfTime = utcZeroHourOfTime;
+    public void setHourUtcZero(int hourUtcZero) {
+        LOGGER.info("in TimeSubject.setHourUtcZero().");
+        LOGGER.info("hourUtcZero: " + hourUtcZero);
+        this.hourUtcZero = hourUtcZero;
         notifyAllCities();
     }
 

@@ -36,13 +36,13 @@ public class HotelWorldClocksStepdefs {
     }
 
     @When("^I adjust the incorrect time of the clock of \"([^\"]*)\" to be (\\d+)$")
-    public void I_adjust_the_incorrect_time_of_the_clock_of_to_be(String cityName, int hourOfTime) throws Throwable {
-        this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hourOfTime, cityName);
+    public void I_adjust_the_incorrect_time_of_the_clock_of_to_be(String cityName, int hour) throws Throwable {
+        this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hour, cityName);
     }
 
     @Then("^the time of the clock of \"([^\"]*)\" should be (\\d+)$")
-    public void the_time_of_the_clock_of_should_be(String cityName, int expectedHourOfTime) throws Throwable {
-        assertEquals("", Integer.toString(expectedHourOfTime), this.hotelWorldClocksFacade.getResultHourOfTime(cityName));
+    public void the_time_of_the_clock_of_should_be(String cityName, int expectedHour) throws Throwable {
+        assertEquals("", Integer.toString(expectedHour), this.hotelWorldClocksFacade.getResultHour(cityName));
     }
 
     @Given("^the DST period of \"([^\"]*)\" ends$")
@@ -56,7 +56,7 @@ public class HotelWorldClocksStepdefs {
     }
 
     @When("^I adjust the time of the clock of \"([^\"]*)\" to be (\\d+) due to the end of DST$")
-    public void I_adjust_the_time_of_the_clock_of_to_be_due_to_the_end_of_DST(String cityName, int hourOfTime) throws Throwable {
-        this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hourOfTime, cityName);
+    public void I_adjust_the_time_of_the_clock_of_to_be_due_to_the_end_of_DST(String cityName, int hour) throws Throwable {
+        this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hour, cityName);
     }
 }

@@ -37,19 +37,19 @@ public class RobotKeywordLibrary {
         this.hotelWorldClocksFacade.addACityWithDstStatus(cityName, DaylightSavingTime.INACTIVE);
     }
 
-    public void adjustIncorrectTimeOfCity(int hourOfTime, String cityName) {
+    public void adjustIncorrectTimeOfCity(int hour, String cityName) {
         LOGGER.info("in RobotKeywordLibrary.adjustIncorrectTimeOfCity().");
-        LOGGER.info("hourOfTime: " + hourOfTime);
+        LOGGER.info("hour: " + hour);
         LOGGER.info("cityName: " + cityName);
-        this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hourOfTime, cityName);
+        this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hour, cityName);
     }
 
-    public String getResultHourOfTime(String cityName) {
-        LOGGER.info("in RobotKeywordLibrary.getResultHourOfTime().");
-        return this.hotelWorldClocksFacade.getResultHourOfTime(cityName);
+    public String getResultHour(String cityName) {
+        LOGGER.info("in RobotKeywordLibrary.getResultHour().");
+        return this.hotelWorldClocksFacade.getResultHour(cityName);
     }
 
-    public void adjustTimeOfCityWhenDstEnds(int hourOfTime, String cityName) {
-        this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hourOfTime, cityName);
+    public void adjustTimeOfCityWhenDstEnds(int hour, String cityName) {
+        this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hour, cityName);
     }
 }

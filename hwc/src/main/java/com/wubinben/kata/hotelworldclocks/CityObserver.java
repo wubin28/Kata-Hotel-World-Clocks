@@ -8,11 +8,11 @@ package com.wubinben.kata.hotelworldclocks;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class CityObserver {
-    public static final int INVALID_HOUR_OF_TIME = 100;
+    public static final int INVALID_HOUR = 100;
     protected final int utcOffset;
     protected TimeSubject timeSubject;
     protected DaylightSavingTime dstStatus;
-    protected int localHourOfTime;
+    protected int localHour;
 
     public CityObserver(TimeSubject timeSubject, int utcOffset, DaylightSavingTime dstStatus) {
         this.timeSubject = timeSubject;
@@ -20,39 +20,39 @@ public abstract class CityObserver {
         this.dstStatus = dstStatus;
     }
 
-    public abstract void setStateOfTimeSubjectWithUtcZeroHourOfTime(int hourOfTime);
+    public abstract void setTimeToTimeSubject(int localHour);
 
-    public abstract void updateCityWithUtcZeroHourOfTime(int utcZeroHourOfTime);
+    public abstract void updateTimeOfCity(int hourUtcZero);
 
-    protected int convertLocalTimeToUtcZeroTime(int hourOfTime, int utcOffset, DaylightSavingTime dstStatus) {
+    protected int convertLocalTimeToUtcZeroTime(int hour, int utcOffset, DaylightSavingTime dstStatus) {
         switch (dstStatus) {
             case INACTIVE:
-                return hourOfTime - utcOffset;
+                return hour - utcOffset;
             case ACTIVE:
-                return hourOfTime - utcOffset - 1;
+                return hour - utcOffset - 1;
         }
-        return CityObserver.INVALID_HOUR_OF_TIME;
+        return CityObserver.INVALID_HOUR;
     }
 
-    protected int convertUtcZeroTimeToLocalTime(int utcZeroHourOfTime, int utcOffset, DaylightSavingTime dstStatus) {
+    protected int convertUtcZeroTimeToLocalTime(int hourUtcZero, int utcOffset, DaylightSavingTime dstStatus) {
         switch (dstStatus) {
             case INACTIVE:
-                return withinTwentyFourHours(utcZeroHourOfTime + utcOffset);
+                return withinTwentyFourHours(hourUtcZero + utcOffset);
             case ACTIVE:
-                return withinTwentyFourHours(utcZeroHourOfTime + utcOffset + 1);
+                return withinTwentyFourHours(hourUtcZero + utcOffset + 1);
         }
-        return CityObserver.INVALID_HOUR_OF_TIME;
+        return CityObserver.INVALID_HOUR;
     }
 
-    private int withinTwentyFourHours(int hourOfTime) {
-        if (hourOfTime < 0) {
-            return hourOfTime + 24;
+    private int withinTwentyFourHours(int hour) {
+        if (hour < 0) {
+            return hour + 24;
         }
-        if (hourOfTime > 24) {
-            return hourOfTime - 24;
+        if (hour > 24) {
+            return hour - 24;
         }
-        return hourOfTime;
+        return hour;
     }
 
-    public abstract String getLocalHourOfTime();
+    public abstract String getLocalHour();
 }

@@ -50,12 +50,12 @@ a hotel lobby has five clocks
 "${city}" does not use the DST
     Set City DST inactive and Add to City List    ${city}
 
-I adjust the incorrect time of the clock of "${city}" to be ${hour of time}
-    Adjust Incorrect Time of City    ${hour of time}    ${city}
+I adjust the incorrect time of the clock of "${city}" to be ${hour}
+    Adjust Incorrect Time of City    ${hour}    ${city}
 
-the time of the clock of "${city}" should be ${expected hour of time}
-    ${result hour of time}=    Get Result Hour Of Time    ${city}
-    Should Be Equal    ${expected hour of time}    ${result hour of time}
+the time of the clock of "${city}" should be ${expected hour}
+    ${result hour}=    Get Result Hour    ${city}
+    Should Be Equal    ${expected hour}    ${result hour}
 
 the DST period of "${city}" ends
     Set City DST inactive and Add to City List    ${city}
@@ -63,6 +63,6 @@ the DST period of "${city}" ends
 the DST period of "${city}" does not end
     Set City DST active and Add to City List    ${city}
 
-I adjust the time of the clock of "${city}" to be ${hour of time} due to the end of DST
-    Adjust Time of City When DST Ends    ${hour of time}    ${city}
+I adjust the time of the clock of "${city}" to be ${hour} due to the end of DST
+    Adjust Time of City When DST Ends    ${hour}    ${city}
 

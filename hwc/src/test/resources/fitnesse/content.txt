@@ -19,7 +19,7 @@ Adjust the incorrect time of Beijing
 |Set city to be not using the DST              |Beijing                                                                  |
 |Set city to be not using the DST              |Moscow                                                                   |
 |Set city to be not using the DST              |Sydney                                                                   |
-|Adjust the incorrect time of the clock of city|Beijing                      |to be the correct hour of time|9           |
+|Adjust the incorrect time of the clock of city|Beijing                      |to be the correct hour        |9           |
 |Check                                         |the time of the clock of city|Beijing                       |should be|9 |
 |Check                                         |the time of the clock of city|London                        |should be|2 |
 |Check                                         |the time of the clock of city|Moscow                        |should be|5 |

@@ -4,7 +4,7 @@ import com.wubinben.kata.hotelworldclocks.DaylightSavingTime;
 import com.wubinben.kata.hotelworldclocks.HotelWorldClocksFacade;
 
 /**
- * Created with IntelliJ IDEA.
+ * FitNesse Fixture Code
  * User: Ben
  * Date: 13-9-11
  * Time: 上午9:42
@@ -28,12 +28,12 @@ public class AHotelLobbyHasFiveClocks {
         this.hotelWorldClocksFacade.addACityWithDstStatus(cityName, DaylightSavingTime.INACTIVE);
     }
 
-    public void AdjustTheIncorrectTimeOfTheClockOfCityToBeTheCorrectHourOfTime(String cityName, int hourOfTime) {
-        this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hourOfTime, cityName);
+    public void AdjustTheIncorrectTimeOfTheClockOfCityToBeTheCorrectHour(String cityName, int hour) {
+        this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hour, cityName);
     }
 
     public String theTimeOfTheClockOfCityShouldBe(String cityName) {
-        return this.hotelWorldClocksFacade.getResultHourOfTime(cityName);
+        return this.hotelWorldClocksFacade.getResultHour(cityName);
     }
 
     public void EndTheDSTPeriodOfCity(String cityName) {
@@ -44,7 +44,7 @@ public class AHotelLobbyHasFiveClocks {
         this.hotelWorldClocksFacade.addACityWithDstStatus(cityName, DaylightSavingTime.ACTIVE);
     }
 
-    public void AdjustTheTimeOfTheClockOfCityDueToTheEndOfDSTToBe(String cityName, int hourOfTime) {
-        this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hourOfTime, cityName);
+    public void AdjustTheTimeOfTheClockOfCityDueToTheEndOfDSTToBe(String cityName, int hour) {
+        this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hour, cityName);
     }
 }

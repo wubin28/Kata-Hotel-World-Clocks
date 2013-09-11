@@ -20,26 +20,26 @@ public class Beijing extends CityObserver {
     }
 
     @Override
-    public void setStateOfTimeSubjectWithUtcZeroHourOfTime(int localHourOfTime) {
-        LOGGER.info("in Beijing.setStateOfTimeSubjectWithUtcZeroHourOfTime().");
-        LOGGER.info("localHourOfTime: " + localHourOfTime);
-        super.localHourOfTime = localHourOfTime;
-        super.timeSubject.setUtcZeroHourOfTime(convertLocalTimeToUtcZeroTime(super.localHourOfTime,
+    public void setTimeToTimeSubject(int localHour) {
+        LOGGER.info("in Beijing.setTimeToTimeSubject().");
+        LOGGER.info("localHour: " + localHour);
+        super.localHour = localHour;
+        super.timeSubject.setHourUtcZero(convertLocalTimeToUtcZeroTime(super.localHour,
                 super.utcOffset, super.dstStatus));
     }
 
     @Override
-    public void updateCityWithUtcZeroHourOfTime(int utcZeroHourOfTime) {
-        LOGGER.info("in Beijing.updateCityWithUtcZeroHourOfTime()");
-        LOGGER.info("utcZeroHourOfTime: " + utcZeroHourOfTime);
-        super.localHourOfTime = convertUtcZeroTimeToLocalTime(utcZeroHourOfTime, super.utcOffset, super.dstStatus);
+    public void updateTimeOfCity(int hourUtcZero) {
+        LOGGER.info("in Beijing.updateTimeOfCity()");
+        LOGGER.info("hourUtcZero: " + hourUtcZero);
+        super.localHour = convertUtcZeroTimeToLocalTime(hourUtcZero, super.utcOffset, super.dstStatus);
     }
 
     @Override
-    public String getLocalHourOfTime() {
-        LOGGER.info("in Beijing.getLocalHourOfTime().");
-        LOGGER.info("this.localHourOfTime: " + super.localHourOfTime);
-        return Integer.toString(super.localHourOfTime);
+    public String getLocalHour() {
+        LOGGER.info("in Beijing.getLocalHour().");
+        LOGGER.info("this.localHour: " + super.localHour);
+        return Integer.toString(super.localHour);
     }
 
 }

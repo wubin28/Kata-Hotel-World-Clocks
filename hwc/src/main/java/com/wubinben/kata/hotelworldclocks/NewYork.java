@@ -18,19 +18,19 @@ public class NewYork extends CityObserver {
     }
 
     @Override
-    public void setStateOfTimeSubjectWithUtcZeroHourOfTime(int localHourOfTime) {
-        super.localHourOfTime = localHourOfTime;
-        super.timeSubject.setUtcZeroHourOfTime(convertLocalTimeToUtcZeroTime(super.localHourOfTime,
+    public void setTimeToTimeSubject(int localHour) {
+        super.localHour = localHour;
+        super.timeSubject.setHourUtcZero(convertLocalTimeToUtcZeroTime(super.localHour,
                 super.utcOffset, super.dstStatus));
     }
 
     @Override
-    public void updateCityWithUtcZeroHourOfTime(int utcZeroHourOfTime) {
-        super.localHourOfTime = convertUtcZeroTimeToLocalTime(utcZeroHourOfTime, super.utcOffset, super.dstStatus);
+    public void updateTimeOfCity(int hourUtcZero) {
+        super.localHour = convertUtcZeroTimeToLocalTime(hourUtcZero, super.utcOffset, super.dstStatus);
     }
 
     @Override
-    public String getLocalHourOfTime() {
-        return Integer.toString(super.localHourOfTime);
+    public String getLocalHour() {
+        return Integer.toString(super.localHour);
     }
 }
