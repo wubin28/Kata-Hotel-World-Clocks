@@ -42,7 +42,7 @@ public class HotelWorldClocksStepdefs {
 
     @Then("^the time of the clock of \"([^\"]*)\" should be (\\d+)$")
     public void the_time_of_the_clock_of_should_be(String cityName, int expectedHour) throws Throwable {
-        assertEquals("", Integer.toString(expectedHour), this.hotelWorldClocksFacade.getResultHour(cityName));
+        assertEquals("The result hour is not the same with the expected hour", Integer.toString(expectedHour), this.hotelWorldClocksFacade.getResultHour(cityName));
     }
 
     @Given("^the DST period of \"([^\"]*)\" ends$")
