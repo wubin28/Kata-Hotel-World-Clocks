@@ -9,7 +9,7 @@ Documentation   Use Robot Framework Maven Plugin and Java to implement the
 ...             incorrect time or start/end of daylight saving period, the time
 ...             of all other clocks will be set automatically. The hotel would
 ...             add more clocks for different cities in the future.
-Library     com.wubinben.kata.hotelworldclocks.RobotKeywordLibrary
+Library     com.wubinben.kata.hotelworldclocks.robotframework.RobotKeywordLibrary
 
 *** Test Cases ***
 Adjust the incorrect time of Beijing

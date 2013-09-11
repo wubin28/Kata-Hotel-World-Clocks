@@ -1,5 +1,9 @@
-package com.wubinben.kata.hotelworldclocks;
+package com.wubinben.kata.hotelworldclocks.robotframework;
 
+
+import com.wubinben.kata.hotelworldclocks.BenLogger;
+import com.wubinben.kata.hotelworldclocks.DaylightSavingTime;
+import com.wubinben.kata.hotelworldclocks.HotelWorldClocksFacade;
 
 /**
  * The fixture code.
