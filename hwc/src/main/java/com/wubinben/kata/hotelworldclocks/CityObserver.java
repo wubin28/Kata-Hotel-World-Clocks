@@ -9,10 +9,14 @@ package com.wubinben.kata.hotelworldclocks;
  */
 public abstract class CityObserver {
     public static final int INVALID_HOUR_OF_TIME = 100;
+    protected final int utcOffset;
     protected TimeSubject timeSubject;
+    protected DaylightSavingTime dstStatus;
 
-    public CityObserver(TimeSubject timeSubject) {
+    public CityObserver(TimeSubject timeSubject, int utcOffset, DaylightSavingTime dstStatus) {
         this.timeSubject = timeSubject;
+        this.utcOffset = utcOffset;
+        this.dstStatus = dstStatus;
     }
 
     public abstract void setStateOfTimeSubjectWithUtcZeroHourOfTime(int hourOfTime);
