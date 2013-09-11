@@ -52,6 +52,7 @@ public class HotelWorldClocksFacade {
 
     public String getResultHourOfTime(String cityName) {
         LOGGER.info("in HotelWorldClocksFacade.getResultHourOfTime().");
+        LOGGER.info("201309111003 cityName: " + cityName + "this.timeSubject: " + this.timeSubject.toString());
         return this.timeSubject.getCity(cityName).getLocalHourOfTime();
     }
 

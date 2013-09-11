@@ -1,0 +1,42 @@
+!define TEST_SYSTEM {slim}
+!path fitnesse-standalone.jar
+!path C:\OOR\Archetypes\github\Kata-Hotel-World-Clocks\hwc\target\hwc-1.0.jar
+
+!|import      |
+|com.wubinben.kata.hotelworldclocks.fitnesse|
+
+Kata Hotel World Clocks
+"In order to adjust the time of clocks of different cities in the lobby of a hotel as easily as possible
+As a employee of the hotel
+I want to adjust the time of any one clock and the time of all other clocks will be adjusted automatically.
+"
+
+Adjust the incorrect time of Beijing
+
+!|script                                       |a hotel lobby has five clocks                                            |
+|Set city to be in the DST period              |London                                                                   |
+|Set city to be in the DST period              |New York                                                                 |
+|Set city to be not using the DST              |Beijing                                                                  |
+|Set city to be not using the DST              |Moscow                                                                   |
+|Set city to be not using the DST              |Sydney                                                                   |
+|Adjust the incorrect time of the clock of city|Beijing                      |to be the correct hour of time|9           |
+|Check                                         |the time of the clock of city|Beijing                       |should be|9 |
+|Check                                         |the time of the clock of city|London                        |should be|2 |
+|Check                                         |the time of the clock of city|Moscow                        |should be|5 |
+|Check                                         |the time of the clock of city|Sydney                        |should be|11|
+|Check                                         |the time of the clock of city|New York                      |should be|21|
+
+The daylight saving period of London ends
+
+!|script                             |a hotel lobby has five clocks                                         |
+|End the DST period of city          |London                                                                |
+|Continue the DST period of city     |New York                                                              |
+|Set city to be not using the DST    |Beijing                                                               |
+|Set city to be not using the DST    |Moscow                                                                |
+|Set city to be not using the DST    |Sydney                                                                |
+|Adjust the time of the clock of city|London                       |due to the end of DST to be|0           |
+|Check                               |the time of the clock of city|Beijing                    |should be|8 |
+|Check                               |the time of the clock of city|London                     |should be|0 |
+|Check                               |the time of the clock of city|Moscow                     |should be|4 |
+|Check                               |the time of the clock of city|Sydney                     |should be|10|
+|Check                               |the time of the clock of city|New York                   |should be|20|
