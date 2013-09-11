@@ -12,6 +12,7 @@ public abstract class CityObserver {
     protected final int utcOffset;
     protected TimeSubject timeSubject;
     protected DaylightSavingTime dstStatus;
+    protected int localHourOfTime;
 
     public CityObserver(TimeSubject timeSubject, int utcOffset, DaylightSavingTime dstStatus) {
         this.timeSubject = timeSubject;
