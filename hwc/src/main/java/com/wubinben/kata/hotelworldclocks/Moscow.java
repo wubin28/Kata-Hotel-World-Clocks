@@ -9,26 +9,26 @@ package com.wubinben.kata.hotelworldclocks;
  */
 public class Moscow extends CityObserver {
 
-    private static final int utcOffset = 4;
+    private static final int UTC_OFFSET = 4;
 
-    private Moscow(int utcOffset, DaylightSavingTime dstStatus, TimeSubject timeSubject) {
+    private Moscow(DaylightSavingTime dstStatus, TimeSubject timeSubject) {
         super(timeSubject, dstStatus);
     }
 
-    public static Moscow newInstance(int utcOffset, DaylightSavingTime dstStatus, TimeSubject timeSubject) {
-        return new Moscow(utcOffset, dstStatus, timeSubject);
+    public static Moscow newInstance(DaylightSavingTime dstStatus, TimeSubject timeSubject) {
+        return new Moscow(dstStatus, timeSubject);
     }
 
     @Override
     public void setTimeToTimeSubject(int localHour) {
         super.localHour = localHour;
         super.timeSubject.setHourUtcZero(convertLocalTimeToUtcZeroTime(super.localHour,
-                this.utcOffset, super.dstStatus));
+                Moscow.UTC_OFFSET, super.dstStatus));
     }
 
     @Override
     public void updateTimeOfCity(int hourUtcZero) {
-        super.localHour = convertUtcZeroTimeToLocalTime(hourUtcZero, this.utcOffset, super.dstStatus);
+        super.localHour = convertUtcZeroTimeToLocalTime(hourUtcZero, Moscow.UTC_OFFSET, super.dstStatus);
     }
 
     @Override

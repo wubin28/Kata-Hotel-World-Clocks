@@ -9,26 +9,26 @@ package com.wubinben.kata.hotelworldclocks;
  */
 public class Sydney extends CityObserver {
 
-    private static final int utcOffset = 10;
+    private static final int UTC_OFFSET = 10;
 
-    private Sydney(int utcOffset, DaylightSavingTime dstStatus, TimeSubject timeSubject) {
+    private Sydney(DaylightSavingTime dstStatus, TimeSubject timeSubject) {
         super(timeSubject, dstStatus);
     }
 
-    public static Sydney newInstance(int utcOffset, DaylightSavingTime dstStatus, TimeSubject timeSubject) {
-        return new Sydney(utcOffset, dstStatus, timeSubject);
+    public static Sydney newInstance(DaylightSavingTime dstStatus, TimeSubject timeSubject) {
+        return new Sydney(dstStatus, timeSubject);
     }
 
     @Override
     public void setTimeToTimeSubject(int localHour) {
         super.localHour = localHour;
         super.timeSubject.setHourUtcZero(convertLocalTimeToUtcZeroTime(super.localHour,
-                this.utcOffset, super.dstStatus));
+                Sydney.UTC_OFFSET, super.dstStatus));
     }
 
     @Override
     public void updateTimeOfCity(int hourUtcZero) {
-        super.localHour = convertUtcZeroTimeToLocalTime(hourUtcZero, this.utcOffset, super.dstStatus);
+        super.localHour = convertUtcZeroTimeToLocalTime(hourUtcZero, Sydney.UTC_OFFSET, super.dstStatus);
     }
 
     @Override

@@ -10,14 +10,14 @@ package com.wubinben.kata.hotelworldclocks;
  */
 public class Beijing extends CityObserver {
     private static final BenLogger LOGGER = BenLogger.getLogger(BenLogger.LEVEL_OFF);
-    private static final int utcOffset = 8;
+    private static final int UTC_OFFSET = 8;
 
-    private Beijing(int utcOffset, DaylightSavingTime dstStatus, TimeSubject timeSubject) {
+    private Beijing(DaylightSavingTime dstStatus, TimeSubject timeSubject) {
         super(timeSubject, dstStatus);
     }
 
-    public static Beijing newInstance(int utcOffset, DaylightSavingTime dstStatus, TimeSubject timeSubject) {
-        return new Beijing(utcOffset, dstStatus, timeSubject);
+    public static Beijing newInstance(DaylightSavingTime dstStatus, TimeSubject timeSubject) {
+        return new Beijing(dstStatus, timeSubject);
     }
 
     @Override
@@ -26,14 +26,14 @@ public class Beijing extends CityObserver {
         LOGGER.info("localHour: " + localHour);
         super.localHour = localHour;
         super.timeSubject.setHourUtcZero(convertLocalTimeToUtcZeroTime(super.localHour,
-                this.utcOffset, super.dstStatus));
+                Beijing.UTC_OFFSET, super.dstStatus));
     }
 
     @Override
     public void updateTimeOfCity(int hourUtcZero) {
         LOGGER.info("in Beijing.updateTimeOfCity()");
         LOGGER.info("hourUtcZero: " + hourUtcZero);
-        super.localHour = convertUtcZeroTimeToLocalTime(hourUtcZero, this.utcOffset, super.dstStatus);
+        super.localHour = convertUtcZeroTimeToLocalTime(hourUtcZero, Beijing.UTC_OFFSET, super.dstStatus);
     }
 
     @Override

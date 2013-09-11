@@ -21,37 +21,30 @@ public class HotelWorldClocksFacade {
     }
 
     /**
-     * Todo: 在工厂类里用反射来创建实例，这样能消除重复代码。
-     *  public CityFactory {
-     public static CitiObserver create(String name) {
-     Class clazz = class.forName(name);  //package info needed.
-     CityObserver  city = clazz.newInstance();  //if so, remove newInstance() from every city.
-     return city;
-     }
-     }
+     * Todo: 在工厂类里用反射class.forName()来创建实例，这样能消除重复代码。
      * @param cityName
      * @param dstStatus
      */
     public void addACityWithDstStatus(String cityName, DaylightSavingTime dstStatus) {
         LOGGER.info("in HotelWorldClocksFacade.addACityWithDstStatus()");
         if (cityName.equals("Beijing")) {
-            this.timeSubject.attach("Beijing", Beijing.newInstance(8, dstStatus, this.timeSubject));
+            this.timeSubject.attach("Beijing", Beijing.newInstance(dstStatus, this.timeSubject));
             LOGGER.info("attached Beijing");
         }
         if (cityName.equals("London")) {
-            this.timeSubject.attach("London", London.newInstance(0, dstStatus, this.timeSubject));
+            this.timeSubject.attach("London", London.newInstance(dstStatus, this.timeSubject));
             LOGGER.info("attached London");
         }
         if (cityName.equals("Moscow")) {
-            this.timeSubject.attach("Moscow", Moscow.newInstance(4, dstStatus, this.timeSubject));
+            this.timeSubject.attach("Moscow", Moscow.newInstance(dstStatus, this.timeSubject));
             LOGGER.info("attached Moscow");
         }
         if (cityName.equals("Sydney")) {
-            this.timeSubject.attach("Sydney", Sydney.newInstance(10, dstStatus, this.timeSubject));
+            this.timeSubject.attach("Sydney", Sydney.newInstance(dstStatus, this.timeSubject));
             LOGGER.info("attached Sydney");
         }
         if (cityName.equals("New York")) {
-            this.timeSubject.attach("New York", NewYork.newInstance(-5, dstStatus, this.timeSubject));
+            this.timeSubject.attach("New York", NewYork.newInstance(dstStatus, this.timeSubject));
             LOGGER.info("attached New York");
         }
     }
