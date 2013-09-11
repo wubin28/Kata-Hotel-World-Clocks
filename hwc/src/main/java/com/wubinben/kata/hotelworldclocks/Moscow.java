@@ -9,14 +9,13 @@ package com.wubinben.kata.hotelworldclocks;
  */
 public class Moscow extends CityObserver {
     private final int utcOffset;
-    private TimeSubject timeSubject;
     private DaylightSavingTime dstStatus;
     private int localHourOfTime;
 
     private Moscow(int utcOffset, DaylightSavingTime dstStatus, TimeSubject timeSubject) {
+        super(timeSubject);
         this.utcOffset = utcOffset;
         this.dstStatus = dstStatus;
-        this.timeSubject = timeSubject;
     }
 
     public static Moscow newInstance(int utcOffset, DaylightSavingTime dstStatus, TimeSubject timeSubject) {
@@ -26,7 +25,7 @@ public class Moscow extends CityObserver {
     @Override
     public void setStateOfTimeSubjectWithUtcZeroHourOfTime(int localHourOfTime) {
         this.localHourOfTime = localHourOfTime;
-        this.timeSubject.setUtcZeroHourOfTime(convertLocalTimeToUtcZeroTime(this.localHourOfTime,
+        super.timeSubject.setUtcZeroHourOfTime(convertLocalTimeToUtcZeroTime(this.localHourOfTime,
                 this.utcOffset, this.dstStatus));
     }
 
@@ -35,10 +34,6 @@ public class Moscow extends CityObserver {
         this.localHourOfTime = convertUtcZeroTimeToLocalTime(utcZeroHourOfTime, utcOffset, dstStatus);
     }
 
-    @Override
-    public String printCityName() {
-        return "Moscow";
-    }
     @Override
     public String getLocalHourOfTime() {
         return Integer.toString(this.localHourOfTime);

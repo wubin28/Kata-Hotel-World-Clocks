@@ -1,7 +1,7 @@
 package com.wubinben.kata.hotelworldclocks;
 
 /**
- * Created with IntelliJ IDEA.
+ * Abstract Observer
  * User: Ben
  * Date: 13-9-8
  * Time: 下午10:59
@@ -9,6 +9,11 @@ package com.wubinben.kata.hotelworldclocks;
  */
 public abstract class CityObserver {
     public static final int INVALID_HOUR_OF_TIME = 100;
+    protected TimeSubject timeSubject;
+
+    public CityObserver(TimeSubject timeSubject) {
+        this.timeSubject = timeSubject;
+    }
 
     public abstract void setStateOfTimeSubjectWithUtcZeroHourOfTime(int hourOfTime);
 
@@ -43,8 +48,6 @@ public abstract class CityObserver {
         }
         return hourOfTime;
     }
-
-    public abstract String printCityName();
 
     public abstract String getLocalHourOfTime();
 }
