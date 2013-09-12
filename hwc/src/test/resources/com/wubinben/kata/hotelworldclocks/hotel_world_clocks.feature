@@ -1,6 +1,6 @@
 Feature: Kata Hotel World Clocks
-  In order to adjust the time of clocks of different cities in the lobby of a hotel as easily as possible
-  As a employee of the hotel
+  In order to adjust the time of clocks of different cities in the lobby of a hotel as easily as possible,
+  As a employee of the hotel,
   I want to adjust the time of any one clock and the time of all other clocks will be adjusted automatically.
 
   Scenario: Adjust the incorrect time of Beijing
