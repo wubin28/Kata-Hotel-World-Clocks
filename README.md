@@ -15,4 +15,5 @@ Fork and clone this repository to a folder of your PC.
 For Robot Framework Maven Plugin, run command "mvn clean package robotframework:run".
 For Cucumber-jvm, run command "mvn clean test".
 For FitNesse, run command "mvn clean package", create a wiki test page according to the file content.txt, and press "Test" on the wiki page.
+For JUnit Integration Test, run command "mvn clean test" and then "mvn failsafe:integration-test".
 
