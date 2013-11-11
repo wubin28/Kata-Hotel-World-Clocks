@@ -45,17 +45,17 @@ public class HotelWorldClocksStepdefs {
         assertEquals("The result hour is not the same with the expected hour", Integer.toString(expectedHour), this.hotelWorldClocksFacade.getResultHour(cityName));
     }
 
-    @Given("^the DST period of \"([^\"]*)\" ends$")
+    @Given("^(?:the DST period of |城市)\"([^\"]*)\"(?: ends|的夏时制结束了)$")
     public void the_DST_period_of_ends(String cityName) throws Throwable {
         this.hotelWorldClocksFacade.addACityWithDstStatus(cityName, DaylightSavingTime.INACTIVE);
     }
 
-    @Given("^the DST period of \"([^\"]*)\" does not end$")
+    @Given("^(?:the DST period of |城市)\"([^\"]*)\"(?: does not end|的夏时制尚未结束)$")
     public void the_DST_period_of_does_not_end(String cityName) throws Throwable {
         this.hotelWorldClocksFacade.addACityWithDstStatus(cityName, DaylightSavingTime.ACTIVE);
     }
 
-    @When("^I adjust the time of the clock of \"([^\"]*)\" to be (\\d+) due to the end of DST$")
+    @When("^(?:I adjust the time of the clock of |我将)\"([^\"]*)\"(?: to be |的时钟的时间调整到)(\\d+)(?: due to the end of DST|，因为夏时制结束了)$")
     public void I_adjust_the_time_of_the_clock_of_to_be_due_to_the_end_of_DST(String cityName, int hour) throws Throwable {
         this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hour, cityName);
     }
