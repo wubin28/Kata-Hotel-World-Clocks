@@ -4,19 +4,19 @@
   作为酒店雇员，
   我想调整任一城市的时钟的时间后，其余城市的时钟的时间自动调整。
 
-  场景: Adjust the incorrect time of Beijing
-    假如 a hotel lobby has five clocks
-    并且 "London" is in the DST period
-    并且 "New York" is in the DST period
-    并且 "Beijing" does not use the DST
-    并且 "Moscow" does not use the DST
-    并且 "Sydney" does not use the DST
-    当 I adjust the incorrect time of the clock of "Beijing" to be 9
-    那么 the time of the clock of "Beijing" should be 9
-    并且 the time of the clock of "London" should be 2
-    并且 the time of the clock of "Moscow" should be 5
-    并且 the time of the clock of "Sydney" should be 11
-    并且 the time of the clock of "New York" should be 21
+  场景: 将北京的时钟的时间调整正确
+    假如 一个酒店大堂有五个城市的时钟
+    并且 "伦敦"正实行夏时制
+    并且 "纽约"正实行夏时制
+    并且 "北京"未实行夏时制
+    并且 "莫斯科"未实行夏时制
+    并且 "悉尼"未实行夏时制
+    当 我将"北京"的时钟的时间调整到9
+    那么 城市"北京"的时钟的时间应该是9
+    并且 the time of the clock of "伦敦" should be 2
+    并且 the time of the clock of "莫斯科" should be 5
+    并且 the time of the clock of "悉尼" should be 11
+    并且 the time of the clock of "纽约" should be 21
 
   场景: The daylight saving period of London ends
     假如 a hotel lobby has five clocks

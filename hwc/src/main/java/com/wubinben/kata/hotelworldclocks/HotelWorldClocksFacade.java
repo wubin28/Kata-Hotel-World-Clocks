@@ -27,24 +27,24 @@ public class HotelWorldClocksFacade {
      */
     public void addACityWithDstStatus(String cityName, DaylightSavingTime dstStatus) {
         LOGGER.info("in HotelWorldClocksFacade.addACityWithDstStatus()");
-        if (cityName.equals("Beijing")) {
-            this.timeSubject.attach("Beijing", Beijing.newInstance(dstStatus, this.timeSubject));
+        if (cityName.equals("Beijing") || cityName.equals("北京")) {
+            this.timeSubject.attach(cityName, Beijing.newInstance(dstStatus, this.timeSubject));
             LOGGER.info("attached Beijing");
         }
-        if (cityName.equals("London")) {
-            this.timeSubject.attach("London", London.newInstance(dstStatus, this.timeSubject));
+        if (cityName.equals("London") || cityName.equals("伦敦")) {
+            this.timeSubject.attach(cityName, London.newInstance(dstStatus, this.timeSubject));
             LOGGER.info("attached London");
         }
-        if (cityName.equals("Moscow")) {
-            this.timeSubject.attach("Moscow", Moscow.newInstance(dstStatus, this.timeSubject));
+        if (cityName.equals("Moscow") || cityName.equals("莫斯科")) {
+            this.timeSubject.attach(cityName, Moscow.newInstance(dstStatus, this.timeSubject));
             LOGGER.info("attached Moscow");
         }
-        if (cityName.equals("Sydney")) {
-            this.timeSubject.attach("Sydney", Sydney.newInstance(dstStatus, this.timeSubject));
+        if (cityName.equals("Sydney") || cityName.equals("悉尼")) {
+            this.timeSubject.attach(cityName, Sydney.newInstance(dstStatus, this.timeSubject));
             LOGGER.info("attached Sydney");
         }
-        if (cityName.equals("New York")) {
-            this.timeSubject.attach("New York", NewYork.newInstance(dstStatus, this.timeSubject));
+        if (cityName.equals("New York") || cityName.equals("纽约")) {
+            this.timeSubject.attach(cityName, NewYork.newInstance(dstStatus, this.timeSubject));
             LOGGER.info("attached New York");
         }
     }

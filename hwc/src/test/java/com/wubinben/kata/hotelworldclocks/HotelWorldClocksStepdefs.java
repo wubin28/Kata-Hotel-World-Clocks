@@ -20,27 +20,27 @@ public class HotelWorldClocksStepdefs {
         this.hotelWorldClocksFacade = HotelWorldClocksFacade.newInstance();
     }
 
-    @Given("^a hotel lobby has five clocks$")
+    @Given("^a hotel lobby has five clocks|一个酒店大堂有五个城市的时钟$")
     public void a_hotel_lobby_has_five_clocks() throws Throwable {
         this.hotelWorldClocksFacade.testInitialization();
     }
 
-    @Given("^\"([^\"]*)\" is in the DST period$")
+    @Given("^\"([^\"]*)\"(?: is in the DST period|正实行夏时制)$")
     public void is_in_the_DST_period(String cityName) throws Throwable {
         this.hotelWorldClocksFacade.addACityWithDstStatus(cityName, DaylightSavingTime.ACTIVE);
     }
 
-    @Given("^\"([^\"]*)\" does not use the DST$")
+    @Given("^\"([^\"]*)\"(?: does not use the DST|未实行夏时制)$")
     public void does_not_use_the_DST(String cityName) throws Throwable {
         this.hotelWorldClocksFacade.addACityWithDstStatus(cityName, DaylightSavingTime.INACTIVE);
     }
 
-    @When("^I adjust the incorrect time of the clock of \"([^\"]*)\" to be (\\d+)$")
+    @When("^(?:I adjust the incorrect time of the clock of |我将)\"([^\"]*)\"(?: to be |的时钟的时间调整到)(\\d+)$")
     public void I_adjust_the_incorrect_time_of_the_clock_of_to_be(String cityName, int hour) throws Throwable {
         this.hotelWorldClocksFacade.adjustIncorrectTimeOfCity(hour, cityName);
     }
 
-    @Then("^the time of the clock of \"([^\"]*)\" should be (\\d+)$")
+    @Then("^(?:the time of the clock of |城市)\"([^\"]*)\"(?: should be |的时钟的时间应该是)(\\d+)$")
     public void the_time_of_the_clock_of_should_be(String cityName, int expectedHour) throws Throwable {
         assertEquals("The result hour is not the same with the expected hour", Integer.toString(expectedHour), this.hotelWorldClocksFacade.getResultHour(cityName));
     }
