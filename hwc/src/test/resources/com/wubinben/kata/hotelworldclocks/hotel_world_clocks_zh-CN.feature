@@ -13,10 +13,10 @@
     并且 "悉尼"未实行夏时制
     当 我将"北京"的时钟的时间调整到9
     那么 城市"北京"的时钟的时间应该是9
-    并且 the time of the clock of "伦敦" should be 2
-    并且 the time of the clock of "莫斯科" should be 5
-    并且 the time of the clock of "悉尼" should be 11
-    并且 the time of the clock of "纽约" should be 21
+    并且 城市"伦敦"的时钟的时间应该是2
+    并且 城市"莫斯科"的时钟的时间应该是5
+    并且 城市"悉尼"的时钟的时间应该是11
+    并且 城市"纽约"的时钟的时间应该是21
 
   场景: The daylight saving period of London ends
     假如 a hotel lobby has five clocks
